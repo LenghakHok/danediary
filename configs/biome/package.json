@@ -11,10 +11,9 @@
   },
   "files": [
     "base.json",
-    "biome.json",
-    "next.json"
+    "nest.json"
   ],
-  "name": "@configs/eslint",
+  "name": "@configs/biome",
   "private": true,
   "version": "0.0.1"
 }
