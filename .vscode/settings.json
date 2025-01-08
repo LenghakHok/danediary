@@ -7,9 +7,7 @@
   },
   "editor.codeActionsOnSave": {
     "source.fixAll.biome": "always",
-    "source.fixAll.ts": "always",
     "source.organizeImports.biome": "always",
-    "source.removeUnused.ts": "always",
     "source.removeUnusedImports": "always",
     "source.sortImports": "always"
   },
