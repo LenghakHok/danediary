@@ -9,11 +9,7 @@
     "eslint-config-next": "15.1.3",
     "eslint-config-turbo": "^2.3.3"
   },
-  "files": [
-    "base.json",
-    "biome.json",
-    "next.json"
-  ],
+  "files": ["base.json", "biome.json", "next.json"],
   "name": "@configs/eslint",
   "private": true,
   "version": "0.0.1"

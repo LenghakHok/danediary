@@ -2,33 +2,28 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     /* Basic Options */
-    "lib": [
-      "ES2022"
-    ],
-    "target": "ES2022",
-    "module": "ES2022",
-    "types": [
-      "node"
-    ],
-    "paths": {
-      "~encore/*": [
-        "./encore.gen/*"
-      ]
-    },
+    "allowSyntheticDefaultImports": true,
     /* Workspace Settings */
     "composite": true,
-    /* Strict Type-Checking Options */
-    "strict": true,
-    /* Module Resolution Options */
-    "moduleResolution": "bundler",
-    "allowSyntheticDefaultImports": true,
-    "isolatedModules": true,
-    "sourceMap": true,
     "declaration": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     /* Advanced Options */
     "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    /* Basic Options */
+    "lib": ["ES2022"],
+    "module": "ES2022",
+    /* Module Resolution Options */
+    "moduleResolution": "bundler",
+    "paths": {
+      "~encore/*": ["./encore.gen/*"]
+    },
     "skipLibCheck": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true
+    "sourceMap": true,
+    /* Strict Type-Checking Options */
+    "strict": true,
+    "target": "ES2022",
+    "types": ["node"]
   }
 }
