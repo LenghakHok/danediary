@@ -30,6 +30,7 @@
     "b:build": "bun turbo run build --filter '@backend/*'",
     "b:core": "bun turbo run dev --filter '@backend/core'",
     "b:core:build": "bun turbo run build --filter '@backend/core'",
+    "b:core:dev": "bun turbo run dev --filter '@backend/core'",
     "b:core:lint": "bun turbo run lint --filter '@backend/core'",
     "b:dev": "bun turbo run dev --filter '@backend/*'",
     "build": "turbo run build",
