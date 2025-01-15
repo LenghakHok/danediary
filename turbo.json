@@ -15,7 +15,12 @@
     },
     "lint": {
       "dependsOn": ["^lint"]
+    },
+    "start": {
+      "cache": false,
+      "dependsOn": ["^build"],
+      "persistent": false
     }
   },
-  "ui": "tui"
+  "ui": "stream"
 }
