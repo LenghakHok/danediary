@@ -68,6 +68,11 @@
     "p:plate": "bun --bun --workspace='@packages/plate'",
     "p:shadcn": "bun --bun --workspace='@packages/shadcn'"
   },
-  "trustedDependencies": ["@biomejs/biome", "@nestjs/core", "@parcel/watcher"],
+  "trustedDependencies": [
+    "@biomejs/biome",
+    "@nestjs/core",
+    "@parcel/watcher",
+    "esbuild"
+  ],
   "workspaces": ["backend/*", "frontend/*", "configs/*", "packages/*"]
 }
