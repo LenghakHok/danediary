@@ -5,7 +5,7 @@
     "@commitlint/config-conventional": "^19.6.0",
     "@tailwindcss/cli": "4.0.0-beta.3",
     "husky": "^9.1.7",
-    "lint-staged": "^15.3.0",
+    "lint-staged": "^15.4.0",
     "rimraf": "^6.0.1",
     "syncpack": "^13.0.0",
     "turbo": "^2.3.3",
@@ -59,14 +59,14 @@
     "format": "bun --bun biome format --write --files-ignore-unknown=true",
     "lint": "turbo run lint",
     "nuke:node_modules": "bunx rimraf **/node_modules",
-    "p": "bun --bun --workspace='@packages/*'",
-    "p:core": "bun --bun --workspace='@packages/core'",
-    "p:custom": "bun --bun --workspace='@packages/custom'",
-    "p:extension": "bun --bun --workspace='@packages/extension'",
-    "p:lib": "bun --bun --workspace='@packages/lib'",
-    "p:magic": "bun --bun --workspace='@packages/magic'",
-    "p:plate": "bun --bun --workspace='@packages/plate'",
-    "p:shadcn": "bun --bun --workspace='@packages/shadcn'"
+    "ui": "bun --bun --workspace='@ui/*'",
+    "ui:core": "bun --bun --workspace='@ui/core'",
+    "ui:custom": "bun --bun --workspace='@ui/custom'",
+    "ui:extension": "bun --bun --workspace='@ui/extension'",
+    "ui:lib": "bun --bun --workspace='@ui/lib'",
+    "ui:magic": "bun --bun --workspace='@ui/magic'",
+    "ui:plate": "bun --bun --workspace='@ui/plate'",
+    "ui:shadcn": "bun --bun --workspace='@ui/shadcn'"
   },
   "trustedDependencies": [
     "@biomejs/biome",
@@ -74,5 +74,11 @@
     "@parcel/watcher",
     "esbuild"
   ],
-  "workspaces": ["backend/*", "frontend/*", "configs/*", "packages/*"]
+  "workspaces": [
+    "backend/*",
+    "frontend/*",
+    "configs/*",
+    "utils/*",
+    "packages/*"
+  ]
 }
