@@ -54,7 +54,7 @@ const MenubarTrigger = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <MenubarTriggerPrimitive
     className={cn(
-      "flex cursor-default select-none items-center rounded-sm px-3 py-1.5 font-medium text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground",
+      "flex cursor-default select-none items-center rounded-sm px-3 py-1.5 font-medium text-sm outline-hidden focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground",
       className,
     )}
     ref={ref}
@@ -71,7 +71,7 @@ const MenubarSubTrigger = React.forwardRef<
 >(({ className, inset, children, ...props }, ref) => (
   <MenubarSubTriggerPrimitive
     className={cn(
-      "flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground",
+      "flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-hidden focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground",
       inset && "pl-8",
       className,
     )}
@@ -132,7 +132,7 @@ const MenubarItem = React.forwardRef<
 >(({ className, inset, ...props }, ref) => (
   <MenubarItemPrimitive
     className={cn(
-      "relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      "relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-hidden focus:bg-accent focus:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50",
       inset && "pl-8",
       className,
     )}
@@ -149,7 +149,7 @@ const MenubarCheckboxItem = React.forwardRef<
   <MenubarCheckboxItemPrimitive
     checked={checked}
     className={cn(
-      "relative flex cursor-default select-none items-center rounded-sm py-1.5 pr-2 pl-8 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      "relative flex cursor-default select-none items-center rounded-sm py-1.5 pr-2 pl-8 text-sm outline-hidden focus:bg-accent focus:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50",
       className,
     )}
     ref={ref}
@@ -171,7 +171,7 @@ const MenubarRadioItem = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <MenubarRadioItemPrimitive
     className={cn(
-      "relative flex cursor-default select-none items-center rounded-sm py-1.5 pr-2 pl-8 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      "relative flex cursor-default select-none items-center rounded-sm py-1.5 pr-2 pl-8 text-sm outline-hidden focus:bg-accent focus:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50",
       className,
     )}
     ref={ref}
