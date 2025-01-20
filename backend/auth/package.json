@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "better-auth": "^1.1.14",
     "cassandra-driver": "^4.7.2",
     "hono": "^4.6.17"
   },
