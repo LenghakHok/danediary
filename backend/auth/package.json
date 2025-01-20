@@ -1,9 +1,12 @@
 {
   "dependencies": {
+    "cassandra-driver": "^4.7.2",
     "hono": "^4.6.17"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@configs/typescript": "workspace:*",
+    "@types/bun": "latest",
+    "typescript": "^5.0.0"
   },
   "name": "@backend/auth",
   "scripts": {

@@ -7,5 +7,6 @@
       "@/*": ["src/*"]
     },
     "strict": true
-  }
+  },
+  "extends": "@configs/typescript/base.json"
 }
