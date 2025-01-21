@@ -15,6 +15,7 @@
   },
   "name": "@backend/auth",
   "scripts": {
+    "build": "bun --bun build ./src/index.ts --outdir ./dist",
     "dev": "bun run --hot src/index.ts",
     "prepare": "ts-patch install && typia patch"
   },
