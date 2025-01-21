@@ -6,7 +6,13 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "strict": true
+    "plugins": [
+      {
+        "transform": "typia/lib/transform"
+      }
+    ],
+    "strict": true,
+    "strictNullChecks": true
   },
   "extends": "@configs/typescript/base.json"
 }

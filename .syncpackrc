@@ -1,0 +1,9 @@
+{
+  "versionGroups": [
+    {
+      "dependencies": ["$LOCAL"],
+      "label": "Use workspace protocol when developing local packages",
+      "pinVersion": "workspace:*"
+    }
+  ]
+}

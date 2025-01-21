@@ -31,13 +31,13 @@
     "@utils/cn": "workspace:*",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "cmdk": "1.0.0",
+    "cmdk": "1.0.4",
     "date-fns": "^4.1.0",
     "embla-carousel-react": "^8.5.2",
     "input-otp": "^1.4.2",
-    "lucide-react": "^0.471.1",
+    "lucide-react": "0.473.0",
     "next-themes": "^0.4.4",
-    "react-day-picker": "8.10.1",
+    "react-day-picker": "9.5.0",
     "react-hook-form": "^7.54.2",
     "react-resizable-panels": "^2.1.7",
     "recharts": "^2.15.0",
@@ -48,14 +48,14 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
-    "@configs/typescript": "workspace:*",
+    "@configs/typescript": "0.0.0",
     "@tailwindcss/postcss": "^4.0.0-beta.9",
     "postcss": "^8.5.1",
     "tailwindcss": "^4.0.0-beta.9"
   },
   "name": "@ui/shadcn",
   "peerDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.7.3"
   },
   "type": "module"
 }
