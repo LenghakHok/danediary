@@ -1,4 +1,4 @@
-preload = ["./preload.ts"]
+preload = ["./src/confs/preload.ts"]
  
 [test]
-preload = ["./preload.ts"]
+preload = ["./src/confs/preload.ts"]

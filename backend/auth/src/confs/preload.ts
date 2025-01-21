@@ -3,6 +3,8 @@ import { plugin } from "bun";
 
 plugin(
   UnpluginTypia({
-    /* options */
+    log: true,
+    cache: true,
+    tsconfig: "../../tsconfig.json",
   }),
 );
