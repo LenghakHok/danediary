@@ -1,13 +1,17 @@
 # use the official Bun image
 # see all versions at https://hub.docker.com/r/oven/bun/tags
 FROM oven/bun:1 AS base
-WORKDIR /usr/app
+WORKDIR /app
 
-# copy the source code
+# copy package.json and bun.lockb
+COPY ../../package.json ../../bun.lockb ../../turbo.json ../../tsconfig.json ./ 
+COPY ../../configs/ configs/
+COPY ../../backend/auth backend/auth
 
-
+RUN bun install
+RUN bun --bun b:auth:build
 
 # run the app
 USER bun
 EXPOSE 8000/tcp
-ENTRYPOINT [ "bun", "--bun", "run", "b:" ]
+ENTRYPOINT [ "bun", "b:auth:start" ]
