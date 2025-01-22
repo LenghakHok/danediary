@@ -17,5 +17,6 @@
     "strict": true,
     "strictNullChecks": true
   },
+
   "extends": "@configs/typescript/base.json"
 }

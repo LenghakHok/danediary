@@ -13,13 +13,15 @@ const checkEnv: AssertionGuard<IEnv> = typia.createAssertGuardEquals<IEnv>();
 interface IEnv {
   BETTER_AUTH_SECRET: string;
   BETTER_AUTH_URL: string;
-  CORS_ORIGIN_WHITELIST: string;
+  CORS_ORIGIN_WHITELIST: string[];
 }
 
 const env: IEnv = {
   BETTER_AUTH_SECRET: Bun.env.BETTER_AUTH_SECRET,
   BETTER_AUTH_URL: Bun.env.BETTER_AUTH_URL,
-  CORS_ORIGIN_WHITELIST: Bun.env.CORS_ORIGIN_WHITELIST,
+  CORS_ORIGIN_WHITELIST: Bun.env.CORS_ORIGIN_WHITELIST.split(",").map(
+    (origin) => origin.trim(),
+  ),
 };
 
 checkEnv({
