@@ -8,7 +8,7 @@
     "react-dom": "19.0.0"
   },
   "devDependencies": {
-    "@configs/typescript": "0.0.0",
+    "@configs/typescript": "workspace:*",
     "@remix-run/dev": "^2.15.2",
     "@types/react": "19.0.7",
     "@types/react-dom": "19.0.3",
@@ -31,5 +31,6 @@
     "typecheck": "tsc"
   },
   "sideEffects": false,
-  "type": "module"
+  "type": "module",
+  "version": "workspace:*"
 }

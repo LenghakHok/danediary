@@ -75,5 +75,6 @@
     "@parcel/watcher",
     "esbuild"
   ],
+  "version": "workspace:*",
   "workspaces": ["backend/*", "frontend/*", "configs/*", "utils/*", "ui/*"]
 }
