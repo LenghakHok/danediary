@@ -1,0 +1,6 @@
+services:
+  db:
+    image: scylladb/scylla
+    container_name: auth_db
+    networks:
+      - auth

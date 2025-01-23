@@ -4,7 +4,7 @@ FROM oven/bun:1 AS base
 WORKDIR /app
 
 # copy package.json and bun.lockb
-COPY ../../package.json ../../bun.lockb ../../turbo.json ../../tsconfig.json ./ 
+COPY ../../package.json ../../bun.lock ../../turbo.json ../../tsconfig.json ./ 
 COPY ../../configs/ configs/
 COPY ../../backend/auth backend/auth
 

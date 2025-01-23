@@ -1,4 +1,6 @@
+import { auth } from "@/auth";
 import { env } from "@/confs/env";
+
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { csrf } from "hono/csrf";
@@ -37,7 +39,7 @@ app.use(
   }),
 );
 
-// app.on(["POST", "GET"], "/auth/*", (c) => auth.handler(c.req.raw));
+app.on(["POST", "GET"], "/auth/*", (c) => auth.handler(c.req.raw));
 
 app.get("/", (c) => {
   return c.json({ message: "Hello, World!" });
