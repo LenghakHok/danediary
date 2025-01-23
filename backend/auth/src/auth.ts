@@ -1,6 +1,9 @@
-import { env } from "@/confs/env";
 import { betterAuth as createAuth } from "better-auth";
-import { Client } from "cassandra-driver";
+import { drizzleAdapter } from "better-auth/adapters/drizzle";
+import Bun, { SQL } from "bun";
+
+const bunDbClient = new SQL(Bun.env.DATABASE_URL as string);
+
 export const auth = createAuth({
   emailAndPassword: {
     enabled: true,
@@ -9,29 +12,37 @@ export const auth = createAuth({
     minPasswordLength: 8,
   },
   appName: "DaneDiary",
-  database: new Client({}),
+  database: drizzleAdapter(
+    { client: bunDbClient },
+    { provider: "pg", usePlural: true },
+  ),
+  rateLimit: {
+    enabled: true,
+    storage: "memory",
+  },
   socialProviders: {
     github: {
-      clientId: env.GITHUB_CLIENT_ID,
-      clientSecret: env.GITHUB_CLIENT_SECRET,
+      clientId: Bun.env.GITHUB_CLIENT_ID as string,
+      clientSecret: Bun.env.GITHUB_CLIENT_SECRET as string,
     },
     google: {
-      clientId: env.GOOGLE_CLIENT_ID,
-      clientSecret: env.GOOGLE_CLIENT_SECRET,
+      clientId: Bun.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: Bun.env.GOOGLE_CLIENT_SECRET as string,
     },
     facebook: {
-      clientId: env.FACEBOOK_APP_ID,
-      clientSecret: env.FACEBOOK_APP_SECRET,
+      clientId: Bun.env.FACEBOOK_APP_ID as string,
+      clientSecret: Bun.env.FACEBOOK_APP_SECRET as string,
     },
     twitter: {
-      clientId: env.TWITTER_CLIENT_ID,
-      clientSecret: env.TWITTER_CLIENT_SECRET,
+      clientId: Bun.env.TWITTER_CLIENT_ID as string,
+      clientSecret: Bun.env.TWITTER_CLIENT_SECRET as string,
     },
     discord: {
-      clientId: env.DISCORD_CLIENT_ID,
-      clientSecret: env.DISCORD_CLIENT_SECRET,
+      clientId: Bun.env.DISCORD_CLIENT_ID as string,
+      clientSecret: Bun.env.DISCORD_CLIENT_SECRET as string,
     },
   },
+  plugins: [],
   advanced: {
     crossSubDomainCookies: {
       enabled: true,

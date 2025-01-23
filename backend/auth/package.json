@@ -3,15 +3,16 @@
     "@hono/typia-validator": "^0.1.0",
     "@ryoppippi/unplugin-typia": "npm:@jsr/ryoppippi__unplugin-typia",
     "better-auth": "^1.1.14",
-    "cassandra-driver": "^4.7.2",
+    "drizzle-orm": "^0.38.4",
     "hono": "^4.6.17",
     "typia": "^7.6.0"
   },
   "devDependencies": {
     "@configs/typescript": "workspace:*",
     "@types/bun": "latest",
+    "drizzle-kit": "^0.30.2",
     "ts-patch": "^3.3.0",
-    "typescript": "^5.7.3"
+    "typescript": "~5.7.3"
   },
   "name": "@backend/auth",
   "scripts": {
@@ -20,6 +21,5 @@
     "prepare": "ts-patch install && typia patch",
     "start": "bun run ./dist/index.js"
   },
-  "type": "module",
-  "version": "workspace:*"
+  "type": "module"
 }
