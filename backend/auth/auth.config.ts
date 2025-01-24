@@ -14,7 +14,7 @@ export const auth = betterAuth({
     requireEmailVerification: true,
     minPasswordLength: 8,
   },
-  appName: "DaneDiary",
+  appName: Bun.env.APP_NAME,
   database: drizzleAdapter(
     { client: bunDbClient },
     { provider: "pg", schema, usePlural: true },
