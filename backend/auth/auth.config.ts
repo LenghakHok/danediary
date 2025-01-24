@@ -2,7 +2,7 @@ import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import Bun, { SQL } from "bun";
 import Valkey from "iovalkey";
-import schema from "~/db/auth";
+import schema from "~/db/schema";
 
 const bunDbClient = new SQL(Bun.env.DATABASE_URL as string);
 const valkey = new Valkey(Bun.env.VALKEY_URL as string);
@@ -15,7 +15,10 @@ export const auth = betterAuth({
     minPasswordLength: 8,
   },
   appName: "DaneDiary",
-  database: drizzleAdapter({ client: bunDbClient }, { provider: "pg", schema }),
+  database: drizzleAdapter(
+    { client: bunDbClient },
+    { provider: "pg", schema, usePlural: true },
+  ),
   rateLimit: {
     enabled: true,
     storage: "secondary-storage",
