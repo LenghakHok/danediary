@@ -49,9 +49,9 @@
   },
   "devDependencies": {
     "@configs/typescript": "workspace:*",
-    "@tailwindcss/postcss": "^4.0.0-beta.9",
+    "@tailwindcss/postcss": "^4.0.0",
     "postcss": "^8.5.1",
-    "tailwindcss": "^4.0.0-beta.9"
+    "tailwindcss": "^4.0.0"
   },
   "name": "@ui/shadcn",
   "peerDependencies": {
