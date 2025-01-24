@@ -97,6 +97,7 @@
           "level": "error"
         },
         "useExplicitType": "off",
+        "useImportRestrictions": "off",
         "useSortedClasses": {
           "fix": "safe",
           "level": "error",
