@@ -1,5 +1,5 @@
-import { auth } from "@/auth";
-import { env } from "@/env";
+import { auth } from "~/auth.config";
+import { env } from "~/env.config";
 
 import { Hono } from "hono";
 import { cors } from "hono/cors";

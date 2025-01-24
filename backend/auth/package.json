@@ -18,10 +18,10 @@
   },
   "name": "@backend/auth",
   "scripts": {
-    "build": "bun --bun ./build.ts",
-    "dev": "bun run --hot src/index.ts",
+    "build": "bun --bun ./build.config.ts",
+    "dev": "bun run --hot src/main.ts",
     "prepare": "ts-patch install && typia patch",
-    "start": "bun run ./dist/index.js"
+    "start": "bun run ./dist/main.js"
   },
   "type": "module"
 }
