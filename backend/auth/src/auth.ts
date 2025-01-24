@@ -1,10 +1,13 @@
-import { betterAuth as createAuth } from "better-auth";
+import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import Bun, { SQL } from "bun";
+import Valkey from "iovalkey";
+import schema from "~/db/auth";
 
 const bunDbClient = new SQL(Bun.env.DATABASE_URL as string);
+const valkey = new Valkey(Bun.env.VALKEY_URL as string);
 
-export const auth = createAuth({
+export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
     autoSignIn: true,
@@ -12,13 +15,10 @@ export const auth = createAuth({
     minPasswordLength: 8,
   },
   appName: "DaneDiary",
-  database: drizzleAdapter(
-    { client: bunDbClient },
-    { provider: "pg", usePlural: true },
-  ),
+  database: drizzleAdapter({ client: bunDbClient }, { provider: "pg", schema }),
   rateLimit: {
     enabled: true,
-    storage: "memory",
+    storage: "secondary-storage",
   },
   socialProviders: {
     github: {
@@ -51,6 +51,27 @@ export const auth = createAuth({
     defaultCookieAttributes: {
       secure: true,
       sameSite: "strict",
+    },
+  },
+  emailVerification: {
+    sendOnSignUp: true,
+    autoSignInAfterVerification: true,
+  },
+  secondaryStorage: {
+    get: async (key) => {
+      const value = await valkey.get(key);
+      return value ? value : null;
+    },
+    set: async (key, value, ttl) => {
+      // or for valkey:
+      if (ttl) {
+        await valkey.set(key, value, "EX", ttl);
+      } else {
+        await valkey.set(key, value);
+      }
+    },
+    delete: async (key) => {
+      await valkey.del(key);
     },
   },
 });
