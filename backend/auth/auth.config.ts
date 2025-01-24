@@ -66,7 +66,6 @@ export const auth = betterAuth({
       return value ? value : null;
     },
     set: async (key, value, ttl) => {
-      // or for valkey:
       if (ttl) {
         await valkey.set(key, value, "EX", ttl);
       } else {
