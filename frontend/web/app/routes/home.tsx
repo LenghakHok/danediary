@@ -11,7 +11,7 @@ export function meta(_: Route.MetaArgs) {
 export default function Home() {
   return (
     <Button
-      className="rounded-full font-bold font-mono"
+      className="rounded-full font-bold"
       size="sm"
     >
       This is a button
