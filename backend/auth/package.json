@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "@hono/typia-validator": "^0.1.0",
-    "@ryoppippi/unplugin-typia": "npm:@jsr/ryoppippi__unplugin-typia",
+    "@ryoppippi/unplugin-typia": "",
     "better-auth": "^1.1.15",
     "drizzle-orm": "^0.39.1",
     "hono": "^4.6.20",
@@ -19,7 +19,7 @@
   "name": "@backend/auth",
   "scripts": {
     "build": "bun --bun ./build.config.ts",
-    "dev": "bun run --hot src/main.ts",
+    "dev": "bun run --hot src/index.ts",
     "prepare": "ts-patch install && typia patch",
     "start": "bun --bun run ./dist/index.js"
   },
