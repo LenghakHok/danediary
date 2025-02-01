@@ -1,10 +1,10 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import Bun, { SQL } from "bun";
+import Bun from "bun";
 import Valkey from "iovalkey";
 import schema from "~/db/schema";
 
-const bunDbClient = new SQL(Bun.env.DATABASE_URL as string);
+const bunDbClient = new Bun.SQL(Bun.env.DATABASE_URL as string);
 const valkey = new Valkey(Bun.env.VALKEY_URL as string);
 
 export const auth = betterAuth({

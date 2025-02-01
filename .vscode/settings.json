@@ -8,6 +8,8 @@
   "[jsonc]": {
     "editor.defaultFormatter": "biomejs.biome"
   },
+  "cody.autocomplete.advanced.provider": "experimental-ollama",
+  "cody.codebase": "https://github.com/Lenghak/danediary",
   "editor.codeActionsOnSave": {
     "source.fixAll.biome": "always",
     "source.organizeImports.biome": "always",

@@ -2,7 +2,7 @@ import UnpluginTypia from "@ryoppippi/unplugin-typia/bun";
 import Bun from "bun";
 
 Bun.build({
-  entrypoints: ["./src/index.ts"],
+  entrypoints: ["./src/main.ts"],
   minify: true,
   outdir: "./dist",
   plugins: [

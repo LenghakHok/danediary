@@ -1,44 +1,19 @@
+import Bun from "bun";
 import typia, { type AssertionGuard } from "typia";
+import type { IEnv } from "~/types/env";
 
-declare const Bun: {
-  env: IBunEnv;
-};
+const checkEnv: AssertionGuard<IEnv> = typia.createAssertGuardEquals<IEnv>();
 
-interface IBunEnv {
-  BETTER_AUTH_SECRET: string;
-  BETTER_AUTH_URL: string;
+const env = {
+  APP_NAME: Bun.env.APP_NAME,
+  APP_PORT: Number.parseInt(Bun.env.APP_PORT as unknown as string),
 
-  CORS_ORIGIN_WHITELIST: string;
-
-  DISCORD_CLIENT_ID: string;
-  DISCORD_CLIENT_SECRET: string;
-
-  DATABASE_URL: string;
-
-  FACEBOOK_APP_ID: string;
-  FACEBOOK_APP_SECRET: string;
-
-  GITHUB_CLIENT_ID: string;
-  GITHUB_CLIENT_SECRET: string;
-
-  GOOGLE_CLIENT_ID: string;
-  GOOGLE_CLIENT_SECRET: string;
-
-  TWITTER_CLIENT_ID: string;
-  TWITTER_CLIENT_SECRET: string;
-}
-
-interface IEnv extends Omit<IBunEnv, "CORS_ORIGIN_WHITELIST"> {
-  CORS_ORIGIN_WHITELIST: string[];
-}
-
-const env: IEnv = {
   BETTER_AUTH_SECRET: Bun.env.BETTER_AUTH_SECRET,
   BETTER_AUTH_URL: Bun.env.BETTER_AUTH_URL,
 
-  CORS_ORIGIN_WHITELIST: Bun.env.CORS_ORIGIN_WHITELIST.split(",").map(
-    (origin) => origin.trim(),
-  ),
+  CORS_ORIGIN_WHITELIST: (Bun.env.CORS_ORIGIN_WHITELIST as unknown as string)
+    .split(",")
+    .map((origin) => origin.trim()),
 
   DISCORD_CLIENT_ID: Bun.env.DISCORD_CLIENT_ID,
   DISCORD_CLIENT_SECRET: Bun.env.DISCORD_CLIENT_SECRET,
@@ -58,8 +33,4 @@ const env: IEnv = {
   TWITTER_CLIENT_SECRET: Bun.env.TWITTER_CLIENT_SECRET,
 };
 
-const checkEnv: AssertionGuard<IEnv> = typia.createAssertGuardEquals<IEnv>();
-
 checkEnv(env);
-
-export { env };
