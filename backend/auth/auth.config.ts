@@ -4,8 +4,8 @@ import Bun from "bun";
 import Valkey from "iovalkey";
 import schema from "~/db/schema";
 
-const bunDbClient = new Bun.SQL(Bun.env.DATABASE_URL as string);
-const valkey = new Valkey(Bun.env.VALKEY_URL as string);
+const sqlClient = new Bun.SQL(Bun.env.DATABASE_URL as string);
+const valkeyClient = new Valkey(Bun.env.VALKEY_URL as string);
 
 export const auth = betterAuth({
   emailAndPassword: {
@@ -16,7 +16,7 @@ export const auth = betterAuth({
   },
   appName: Bun.env.APP_NAME,
   database: drizzleAdapter(
-    { client: bunDbClient },
+    { client: sqlClient },
     { provider: "pg", schema, usePlural: true },
   ),
   rateLimit: {
@@ -62,18 +62,18 @@ export const auth = betterAuth({
   },
   secondaryStorage: {
     get: async (key) => {
-      const value = await valkey.get(key);
+      const value = await valkeyClient.get(key);
       return value ? value : null;
     },
     set: async (key, value, ttl) => {
       if (ttl) {
-        await valkey.set(key, value, "EX", ttl);
+        await valkeyClient.set(key, value, "EX", ttl);
       } else {
-        await valkey.set(key, value);
+        await valkeyClient.set(key, value);
       }
     },
     delete: async (key) => {
-      await valkey.del(key);
+      await valkeyClient.del(key);
     },
   },
 });
