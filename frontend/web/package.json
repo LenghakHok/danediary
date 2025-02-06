@@ -25,7 +25,7 @@
   "name": "@frontend/web",
   "private": true,
   "scripts": {
-    "build": "bun --bun react-router build",
+    "build": "bun react-router build",
     "dev": "react-router dev",
     "start": "react-router-serve ./build/server/index.js",
     "typecheck": "react-router typegen && tsc"

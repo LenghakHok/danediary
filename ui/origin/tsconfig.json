@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "jsx": "react-jsx",
+    "module": "ESNext",
+    "moduleDetection": "force",
+    "moduleResolution": "bundler",
+    "paths": {
+      "@ui/origin/*": ["./*"]
+    },
+    "skipLibCheck": true
+  },
+  "extends": "@configs/typescript/lib-react.json"
+}

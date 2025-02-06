@@ -1,19 +1,19 @@
 {
   "$schema": "https://ui.shadcn.com/schema.json",
   "aliases": {
-    "components": "@ui/shadcn/components",
-    "hooks": "@ui/shadcn/hooks",
+    "components": "@ui/origin/components",
+    "hooks": "@ui/origin/hooks",
     "lib": "@utils/cn",
-    "ui": "@ui/shadcn/components",
+    "ui": "@ui/origin/components",
     "utils": "@utils/cn/index"
   },
   "iconLibrary": "lucide",
   "registries": {
-    "plate": {
+    "origin": {
       "aliases": {
-        "ui": "@ui/plate/ui"
+        "ui": "@ui/origin"
       },
-      "url": "https://platejs.org/r"
+      "url": "https://originui.com/r"
     }
   },
   "rsc": true,

@@ -1,20 +1,20 @@
 {
-  "version": "7",
   "dialect": "postgresql",
   "entries": [
     {
+      "breakpoints": true,
       "idx": 0,
-      "version": "7",
-      "when": 1737686128069,
       "tag": "0000_daily_speed_demon",
-      "breakpoints": true
+      "version": "7",
+      "when": 1737686128069
     },
     {
+      "breakpoints": true,
       "idx": 1,
-      "version": "7",
-      "when": 1737691041072,
       "tag": "0001_condemned_sunspot",
-      "breakpoints": true
+      "version": "7",
+      "when": 1737691041072
     }
-  ]
+  ],
+  "version": "7"
 }

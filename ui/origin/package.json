@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "@configs/typescript": "workspace:*",
+    "@types/bun": "latest"
+  },
+  "name": "@ui/origin",
+  "peerDependencies": {
+    "typescript": "^5.7.3"
+  },
+  "type": "module"
+}
