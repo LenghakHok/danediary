@@ -1,20 +1,8 @@
 {
-  "[dockerfile]": {
-    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
-  },
-  "[json]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  },
-  "cody.autocomplete.advanced.provider": "experimental-ollama",
-  "cody.codebase": "https://github.com/Lenghak/danediary",
   "editor.codeActionsOnSave": {
     "source.fixAll.biome": "always",
-    "source.organizeImports.biome": "always",
-    "source.removeUnusedImports": "always",
-    "source.sortImports": "always"
+    "source.organizeImports": "never",
+    "source.organizeImports.biome": "always"
   },
   "editor.defaultFormatter": "biomejs.biome",
   "editor.formatOnSave": true

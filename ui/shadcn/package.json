@@ -53,7 +53,7 @@
     "postcss": "^8.5.1",
     "tailwindcss": "^4.0.0"
   },
-  "files": ["./globals.css"],
+  "files": ["./components", "./hooks", "./globals.css"],
   "name": "@ui/shadcn",
   "peerDependencies": {
     "typescript": "^5.7.3"
