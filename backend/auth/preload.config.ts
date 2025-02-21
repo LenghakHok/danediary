@@ -4,7 +4,7 @@ import { plugin } from "bun";
 plugin(
   UnpluginTypia({
     log: true,
-    cache: false,
+    cache: true,
     tsconfig: "tsconfig.json",
   }),
 );
