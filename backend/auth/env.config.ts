@@ -7,6 +7,7 @@ const checkEnv: AssertionGuard<IEnv> = typia.createAssertGuardEquals<IEnv>();
 const env = {
   APP_NAME: Bun.env.APP_NAME,
   APP_PORT: Number.parseInt(Bun.env.APP_PORT as unknown as string),
+  APP_HOST: Bun.env.APP_HOST,
 
   BETTER_AUTH_SECRET: Bun.env.BETTER_AUTH_SECRET,
   BETTER_AUTH_URL: Bun.env.BETTER_AUTH_URL,
@@ -19,6 +20,7 @@ const env = {
   DISCORD_CLIENT_SECRET: Bun.env.DISCORD_CLIENT_SECRET,
 
   DATABASE_URL: Bun.env.DATABASE_URL,
+  VALKEY_URL: Bun.env.VALKEY_URL,
 
   FACEBOOK_APP_ID: Bun.env.FACEBOOK_APP_ID,
   FACEBOOK_APP_SECRET: Bun.env.FACEBOOK_APP_SECRET,

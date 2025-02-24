@@ -1,5 +1,6 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
+import { openAPI } from "better-auth/plugins";
 import Bun from "bun";
 import Valkey from "iovalkey";
 import schema from "~/db/schema";
@@ -45,7 +46,7 @@ export const auth = betterAuth({
       clientSecret: Bun.env.DISCORD_CLIENT_SECRET as string,
     },
   },
-  plugins: [],
+  plugins: [openAPI({ disableDefaultReference: true })],
   advanced: {
     crossSubDomainCookies: {
       enabled: true,

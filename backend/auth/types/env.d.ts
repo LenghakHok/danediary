@@ -5,6 +5,7 @@ declare module "bun" {
 export interface IEnv {
   APP_NAME: string;
   APP_PORT: number;
+  APP_HOST: string;
 
   BETTER_AUTH_SECRET: string;
   BETTER_AUTH_URL: string;
@@ -15,6 +16,7 @@ export interface IEnv {
   DISCORD_CLIENT_SECRET: string;
 
   DATABASE_URL: string;
+  VALKEY_URL: string;
 
   FACEBOOK_APP_ID: string;
   FACEBOOK_APP_SECRET: string;
