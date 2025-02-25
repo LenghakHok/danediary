@@ -6,6 +6,7 @@ export interface IEnv {
   APP_NAME: string;
   APP_PORT: number;
   APP_HOST: string;
+  APP_URL: string;
 
   BETTER_AUTH_SECRET: string;
   BETTER_AUTH_URL: string;

@@ -8,6 +8,7 @@ const env = {
   APP_NAME: Bun.env.APP_NAME,
   APP_PORT: Number.parseInt(Bun.env.APP_PORT as unknown as string),
   APP_HOST: Bun.env.APP_HOST,
+  APP_URL: Bun.env.APP_URL,
 
   BETTER_AUTH_SECRET: Bun.env.BETTER_AUTH_SECRET,
   BETTER_AUTH_URL: Bun.env.BETTER_AUTH_URL,
