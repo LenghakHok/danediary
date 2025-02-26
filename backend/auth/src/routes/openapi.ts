@@ -4,7 +4,8 @@ import { Hono } from "hono";
 import { openAPISpecs } from "hono-openapi";
 import { env } from "hono/adapter";
 import { isErrorResult, merge } from "openapi-merge";
-import { auth } from "~/auth.config";
+
+import { auth as authConfig } from "~/auth.config";
 
 const openAPI = new Hono();
 
@@ -60,9 +61,11 @@ openAPI.get("/references", async (c) => {
     }
   }
 
+  // get the auth references from authConfig
   const authRef =
-    (await auth.api.generateOpenAPISchema()) as OpenAPIV3_1.Document;
+    (await authConfig.api.generateOpenAPISchema()) as OpenAPIV3_1.Document;
 
+  // changed the main tag and its description of the auth tag
   authRef.tags = [
     {
       name: "Auth",
@@ -71,6 +74,7 @@ openAPI.get("/references", async (c) => {
     },
   ];
 
+  // replace the tags in each path of auth
   if (authRef.paths !== undefined) {
     Object.entries(authRef.paths ?? {}).map(([path, pathObject]) => {
       Object.entries(pathObject ?? {}).map(([pathMethod, methodObject]) => {
