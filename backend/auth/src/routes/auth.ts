@@ -6,25 +6,11 @@ import { auth as authConfig } from "~/auth.config";
 const auth = new Hono({ strict: true });
 
 auth.get("/specs", async (c) => {
+  // get the api scheme from the auth config's api
   const documentation =
     (await authConfig.api.generateOpenAPISchema()) as OpenAPIV3_1.Document;
 
-  documentation.components = {
-    securitySchemes: {
-      bearerAuth: {
-        type: "http",
-        scheme: "bearer",
-        bearerFormat: "JWT",
-      },
-    },
-  };
-
-  documentation.security = [
-    {
-      bearerAuth: [],
-    },
-  ];
-
+  // replace the auth's `Default` tags to `Auth`
   documentation.tags = [
     {
       name: "Auth",
@@ -33,6 +19,7 @@ auth.get("/specs", async (c) => {
     },
   ];
 
+  // recursively replace the auth's `Default` tags to `Auth`
   if (documentation.paths !== undefined) {
     Object.entries(documentation.paths ?? {}).map(([path, pathObject]) => {
       Object.entries(pathObject ?? {}).map(([pathMethod, methodObject]) => {
