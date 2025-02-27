@@ -1,7 +1,7 @@
 import Bun from "bun";
 
-import { auth } from "@/routes/auth";
-import { openAPI } from "@/routes/openapi";
+import { auth } from "@/modules/auth/route";
+import { openAPI } from "@/modules/openapi/route";
 
 import { Hono } from "hono";
 import { cors } from "hono/cors";
