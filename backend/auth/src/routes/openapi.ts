@@ -42,13 +42,13 @@ route.get("/specs", (c, next) => {
 });
 
 route.get("/references", async (c) => {
-  const nonAuthRef = await fetch(`${env(c).APP_URL}/api/openapi/specs`).then(
+  const docsRef = await fetch(`${env(c).APP_URL}/api/openapi/specs`).then(
     (res) => res.body,
   );
   let result = "";
 
-  if (nonAuthRef) {
-    const reader = nonAuthRef.getReader();
+  if (docsRef) {
+    const reader = docsRef.getReader();
     const decoder = new TextDecoder();
 
     let done = false;
@@ -112,7 +112,7 @@ route.get("/references", async (c) => {
 route.get(
   "/",
   apiReference({
-    theme: "saturn",
+    theme: "deepSpace",
     layout: "modern",
     spec: { url: "/api/openapi/references" },
   }),

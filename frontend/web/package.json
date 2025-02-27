@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@legendapp/state": "^3.0.0-beta.27",
     "@react-router/node": "^7.1.5",
     "@react-router/serve": "^7.1.5",
     "@ui/shadcn": "workspace:*",

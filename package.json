@@ -17,7 +17,7 @@
     "*.{css,js,jsx,ts,tsx,md,mdx,json,jsonc}": "biome check --write --unsafe --no-errors-on-unmatched --verbose --files-ignore-unknown 'true"
   },
   "name": "danediary",
-  "packageManager": "bun@1.2.3",
+  "packageManager": "bun@1.2.4",
   "private": true,
   "scripts": {
     "b:auth:build": "turbo run build --filter '@backend/auth'",

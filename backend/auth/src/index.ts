@@ -36,4 +36,4 @@ app.route("/openapi", openAPI);
 export default {
   port: Bun.env.APP_PORT,
   fetch: app.fetch,
-};
+} as Bun.Serve;
