@@ -1,6 +1,6 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { openAPI } from "better-auth/plugins";
+import { openAPI, organization } from "better-auth/plugins";
 import Bun from "bun";
 import Valkey from "iovalkey";
 import schema from "~/db/schema";
@@ -9,12 +9,6 @@ const sqlClient = new Bun.SQL(Bun.env.DATABASE_URL as string);
 const valkeyClient = new Valkey(Bun.env.VALKEY_URL as string);
 
 export const auth = betterAuth({
-  emailAndPassword: {
-    enabled: true,
-    autoSignIn: true,
-    requireEmailVerification: true,
-    minPasswordLength: 8,
-  },
   appName: Bun.env.APP_NAME,
   database: drizzleAdapter(
     { client: sqlClient },
@@ -46,7 +40,12 @@ export const auth = betterAuth({
       clientSecret: Bun.env.DISCORD_CLIENT_SECRET as string,
     },
   },
-  plugins: [openAPI({ disableDefaultReference: true })],
+  plugins: [
+    openAPI({ disableDefaultReference: true }),
+    organization({
+      allowUserToCreateOrganization: true,
+    }),
+  ],
   advanced: {
     crossSubDomainCookies: {
       enabled: true,
@@ -56,10 +55,6 @@ export const auth = betterAuth({
       secure: true,
       sameSite: "strict",
     },
-  },
-  emailVerification: {
-    sendOnSignUp: true,
-    autoSignInAfterVerification: true,
   },
   secondaryStorage: {
     get: async (key) => {
