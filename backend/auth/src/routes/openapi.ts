@@ -5,12 +5,12 @@ import { openAPISpecs } from "hono-openapi";
 import { env } from "hono/adapter";
 import { isErrorResult, merge } from "openapi-merge";
 
-import { auth as authConfig } from "~/auth.config";
+import { auth } from "~/auth.config";
 
-const openAPI = new Hono();
+const route = new Hono();
 
-openAPI.get("/specs", (c, next) => {
-  return openAPISpecs(openAPI, {
+route.get("/specs", (c, next) => {
+  return openAPISpecs(route, {
     documentation: {
       info: {
         title: "DaneDiary API",
@@ -41,7 +41,7 @@ openAPI.get("/specs", (c, next) => {
   })(c, next);
 });
 
-openAPI.get("/references", async (c) => {
+route.get("/references", async (c) => {
   const nonAuthRef = await fetch(`${env(c).APP_URL}/api/openapi/specs`).then(
     (res) => res.body,
   );
@@ -63,7 +63,7 @@ openAPI.get("/references", async (c) => {
 
   // get the auth references from authConfig
   const authRef =
-    (await authConfig.api.generateOpenAPISchema()) as OpenAPIV3_1.Document;
+    (await auth.api.generateOpenAPISchema()) as OpenAPIV3_1.Document;
 
   // changed the main tag and its description of the auth tag
   authRef.tags = [
@@ -109,7 +109,7 @@ openAPI.get("/references", async (c) => {
   return c.body(JSON.stringify(mergeResult.output), 200);
 });
 
-openAPI.get(
+route.get(
   "/",
   apiReference({
     theme: "saturn",
@@ -118,4 +118,4 @@ openAPI.get(
   }),
 );
 
-export { openAPI };
+export { route as openAPI };
