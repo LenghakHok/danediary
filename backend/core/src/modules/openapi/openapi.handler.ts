@@ -1,47 +1,13 @@
-import { apiReference } from "@scalar/hono-api-reference";
 import type { OpenAPIV3_1 } from "@scalar/openapi-types";
-import { Hono } from "hono";
-import { openAPISpecs } from "hono-openapi";
 import { env } from "hono/adapter";
+import { createFactory } from "hono/factory";
 import { isErrorResult, merge } from "openapi-merge";
 
-import { auth } from "~/auth.config";
+import { auth as authConfig } from "~/auth.config";
 
-const route = new Hono();
+const factory = createFactory();
 
-route.get("/specs", (c, next) => {
-  return openAPISpecs(route, {
-    documentation: {
-      info: {
-        title: "DaneDiary API",
-        version: "1.0.0",
-        description: "",
-      },
-      components: {
-        securitySchemes: {
-          bearerAuth: {
-            type: "http",
-            scheme: "bearer",
-            bearerFormat: "JWT",
-          },
-        },
-      },
-      security: [
-        {
-          bearerAuth: [],
-        },
-      ],
-      servers: [
-        {
-          url: `${env(c).APP_URL}`,
-          description: "Local Server",
-        },
-      ],
-    },
-  })(c, next);
-});
-
-route.get("/references", async (c) => {
+export const referencesHandlers = factory.createHandlers(async (c) => {
   const docsRef = await fetch(`${env(c).APP_URL}/api/openapi/specs`).then(
     (res) => res.body,
   );
@@ -63,7 +29,7 @@ route.get("/references", async (c) => {
 
   // get the auth references from authConfig
   const authRef =
-    (await auth.api.generateOpenAPISchema()) as OpenAPIV3_1.Document;
+    (await authConfig.api.generateOpenAPISchema()) as OpenAPIV3_1.Document;
 
   // changed the main tag and its description of the auth tag
   authRef.tags = [
@@ -108,14 +74,3 @@ route.get("/references", async (c) => {
 
   return c.body(JSON.stringify(mergeResult.output), 200);
 });
-
-route.get(
-  "/",
-  apiReference({
-    theme: "deepSpace",
-    layout: "modern",
-    spec: { url: "/api/openapi/references" },
-  }),
-);
-
-export { route as openAPI };

@@ -1,14 +1,14 @@
 import type { OpenAPIV3_1 } from "@scalar/openapi-types";
 import { Hono } from "hono";
 
-import { auth } from "~/auth.config";
+import { auth as authConfig } from "~/auth.config";
 
-const route = new Hono({ strict: true });
+const auth = new Hono({ strict: true });
 
-route.get("/specs", async (c) => {
+auth.get("/specs", async (c) => {
   // get the api scheme from the auth config's api
   const documentation =
-    (await auth.api.generateOpenAPISchema()) as OpenAPIV3_1.Document;
+    (await authConfig.api.generateOpenAPISchema()) as OpenAPIV3_1.Document;
 
   // replace the auth's `Default` tags to `Auth`
   documentation.tags = [
@@ -37,6 +37,6 @@ route.get("/specs", async (c) => {
   return c.json(documentation);
 });
 
-route.on(["POST", "GET"], "/*", (c) => auth.handler(c.req.raw));
+auth.on(["POST", "GET"], "/*", (c) => authConfig.handler(c.req.raw));
 
-export { route as auth };
+export default auth;

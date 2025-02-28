@@ -1,37 +1,36 @@
 import Bun from "bun";
 
-import { auth } from "@/modules/auth/route";
-import { openAPI } from "@/modules/openapi/route";
-
+import { apiReference } from "@scalar/hono-api-reference";
 import { Hono } from "hono";
-import { cors } from "hono/cors";
-import { csrf } from "hono/csrf";
-import { logger } from "hono/logger";
-import { prettyJSON } from "hono/pretty-json";
-import { requestId } from "hono/request-id";
-import { secureHeaders } from "hono/secure-headers";
-import { trimTrailingSlash } from "hono/trailing-slash";
+import { openAPISpecs } from "hono-openapi";
 
-const app = new Hono()
-  .basePath("/api")
-  .use(secureHeaders())
-  .use(requestId())
-  .use(logger())
-  .use(prettyJSON())
-  .use(csrf())
-  .use(trimTrailingSlash())
-  .use(
-    "*",
-    cors({
-      origin: Bun.env.CORS_ORIGIN_WHITELIST,
-      allowHeaders: ["Content-Type", "Authorization"],
-      maxAge: 600,
-      credentials: true,
-    }),
-  );
+import { coreMiddlewares } from "@/middleware/core.middleware";
+
+import auth from "@/modules/auth/auth.controller";
+import medicals from "@/modules/medical/medical.controller";
+import { openAPISpecOptions } from "@/modules/openapi/openapi.const";
+import { referencesHandlers } from "@/modules/openapi/openapi.handler";
+
+const app = new Hono({ strict: true }).basePath("/api");
+
+app.use(coreMiddlewares);
 
 app.route("/auth", auth);
-app.route("/openapi", openAPI);
+app.route("/medical", medicals);
+
+// OPENAPI -- Registeration of the Documentation
+app.get("/openapi/specs", (c, next) =>
+  openAPISpecs(app, openAPISpecOptions)(c, next),
+);
+app.get("/openapi/references", ...referencesHandlers);
+app.get(
+  "/openapi",
+  apiReference({
+    theme: "deepSpace",
+    layout: "modern",
+    spec: { url: "/api/openapi/references" },
+  }),
+);
 
 export default {
   port: Bun.env.APP_PORT,
