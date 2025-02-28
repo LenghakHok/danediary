@@ -39,4 +39,4 @@ auth.get("/specs", async (c) => {
 
 auth.on(["POST", "GET"], "/*", (c) => authConfig.handler(c.req.raw));
 
-export default auth;
+export { auth };

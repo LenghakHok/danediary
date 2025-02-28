@@ -1,6 +1,7 @@
 import Bun from "bun";
 import typia, { type AssertionGuard } from "typia";
-import type { IEnv } from "~/types/env";
+
+import type { IEnv } from "@/types/env";
 
 const checkEnv: AssertionGuard<IEnv> = typia.createAssertGuardEquals<IEnv>();
 

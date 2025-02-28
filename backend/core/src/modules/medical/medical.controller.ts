@@ -14,4 +14,4 @@ medicals.get(
   },
 );
 
-export default medicals;
+export { medicals };

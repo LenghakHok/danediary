@@ -1,4 +1,5 @@
-import { env } from "hono/adapter";
+import Bun from "bun";
+
 import { every } from "hono/combine";
 import { cors } from "hono/cors";
 import { csrf } from "hono/csrf";
@@ -11,7 +12,7 @@ import { trimTrailingSlash } from "hono/trailing-slash";
 
 const factory = createFactory();
 
-export const coreMiddlewares = factory.createMiddleware(async (c, next) => {
+export const coreMiddlewares = factory.createMiddleware(
   every(
     secureHeaders(),
     requestId(),
@@ -20,11 +21,10 @@ export const coreMiddlewares = factory.createMiddleware(async (c, next) => {
     csrf(),
     trimTrailingSlash(),
     cors({
-      origin: env(c).CORS_ORIGIN_WHITELIST as string[],
+      origin: Bun.env.CORS_ORIGIN_WHITELIST as string[],
       allowHeaders: ["Content-Type", "Authorization"],
       maxAge: 600,
       credentials: true,
     }),
-  );
-  await next();
-});
+  ),
+);
