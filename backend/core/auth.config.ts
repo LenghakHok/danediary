@@ -4,11 +4,12 @@ import { openAPI, organization } from "better-auth/plugins";
 import Bun from "bun";
 import Valkey from "iovalkey";
 import schema from "~/db/schema";
+import envConfig from "./env.config";
 
 const sqlClient = new Bun.SQL(Bun.env.DATABASE_URL as string);
 const valkeyClient = new Valkey(Bun.env.VALKEY_URL as string);
 
-export const auth = betterAuth({
+export const authConfig = betterAuth({
   appName: Bun.env.APP_NAME,
   database: drizzleAdapter(
     { client: sqlClient },
@@ -46,16 +47,7 @@ export const auth = betterAuth({
       allowUserToCreateOrganization: true,
     }),
   ],
-  advanced: {
-    crossSubDomainCookies: {
-      enabled: true,
-    },
-    useSecureCookies: true,
-    defaultCookieAttributes: {
-      secure: true,
-      sameSite: "strict",
-    },
-  },
+  trustedOrigins: envConfig.CORS_ORIGIN_WHITELIST,
   secondaryStorage: {
     get: async (key) => {
       const value = await valkeyClient.get(key);

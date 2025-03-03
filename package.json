@@ -37,12 +37,7 @@
     "nuke:node_modules": "bunx rimraf **/node_modules",
     "start": "turbo run start"
   },
-  "trustedDependencies": [
-    "@biomejs/biome",
-    "@nestjs/core",
-    "@parcel/watcher",
-    "esbuild"
-  ],
+  "trustedDependencies": ["@biomejs/biome", "@parcel/watcher", "esbuild"],
   "version": "workspace:*",
   "workspaces": ["backend/*", "frontend/*", "configs/*", "utils/*", "ui/*"]
 }

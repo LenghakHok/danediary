@@ -1,14 +1,14 @@
 import type { OpenAPIV3_1 } from "@scalar/openapi-types";
-import { env } from "hono/adapter";
 import { createFactory } from "hono/factory";
 import { isErrorResult, merge } from "openapi-merge";
 
-import { auth as authConfig } from "~/auth.config";
+import { authConfig } from "~/auth.config";
+import env from "~/env.config";
 
 const factory = createFactory();
 
 export const referencesHandlers = factory.createHandlers(async (c) => {
-  const docsRef = await fetch(`${env(c).APP_URL}/api/openapi/specs`).then(
+  const docsRef = await fetch(`${env.APP_URL}/api/specs`).then(
     (res) => res.body,
   );
   let result = "";

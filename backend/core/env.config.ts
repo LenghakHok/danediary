@@ -3,7 +3,7 @@ import typia, { type AssertionGuard } from "typia";
 
 import type { IEnv } from "@/types/env";
 
-const checkEnv: AssertionGuard<IEnv> = typia.createAssertGuardEquals<IEnv>();
+const checkEnv: AssertionGuard<IEnv> = typia.createValidateEquals<IEnv>();
 
 const env = {
   APP_NAME: Bun.env.APP_NAME,
@@ -35,6 +35,21 @@ const env = {
 
   TWITTER_CLIENT_ID: Bun.env.TWITTER_CLIENT_ID,
   TWITTER_CLIENT_SECRET: Bun.env.TWITTER_CLIENT_SECRET,
-};
+} satisfies IEnv;
 
-checkEnv(env);
+export class Env {
+  isChecked = false;
+
+  constructor() {
+    if (!this.isChecked) {
+      this.isChecked = true;
+      checkEnv(env);
+    }
+  }
+
+  env() {
+    return env;
+  }
+}
+
+export default new Env().env();

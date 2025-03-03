@@ -1,11 +1,12 @@
 import type { OpenApiSpecsOptions } from "hono-openapi";
+import envConfig from "~/env.config";
 
 export const openAPISpecOptions: OpenApiSpecsOptions = {
   documentation: {
     info: {
       title: "DaneDiary API",
       version: "1.0.0",
-      description: "",
+      description: `This is the API document for ${envConfig.APP_NAME}`,
     },
     tags: [
       {
@@ -29,7 +30,7 @@ export const openAPISpecOptions: OpenApiSpecsOptions = {
     ],
     servers: [
       {
-        url: `${process.env.APP_URL}`,
+        url: `${envConfig.APP_URL}`,
         description: "Local Server",
       },
     ],

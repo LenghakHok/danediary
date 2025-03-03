@@ -1,5 +1,3 @@
-import Bun from "bun";
-
 import { every } from "hono/combine";
 import { cors } from "hono/cors";
 import { csrf } from "hono/csrf";
@@ -9,10 +7,11 @@ import { prettyJSON } from "hono/pretty-json";
 import { requestId } from "hono/request-id";
 import { secureHeaders } from "hono/secure-headers";
 import { trimTrailingSlash } from "hono/trailing-slash";
+import envConfig from "~/env.config";
 
 const factory = createFactory();
 
-export const coreMiddlewares = factory.createMiddleware(
+export const core = factory.createMiddleware(
   every(
     secureHeaders(),
     requestId(),
@@ -21,10 +20,12 @@ export const coreMiddlewares = factory.createMiddleware(
     csrf(),
     trimTrailingSlash(),
     cors({
-      origin: Bun.env.CORS_ORIGIN_WHITELIST as string[],
+      origin: envConfig.CORS_ORIGIN_WHITELIST,
       allowHeaders: ["Content-Type", "Authorization"],
-      maxAge: 600,
+      allowMethods: ["POST", "GET", "OPTIONS"],
+      exposeHeaders: ["Content-Length"],
       credentials: true,
+      maxAge: 600,
     }),
   ),
 );
