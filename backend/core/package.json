@@ -4,7 +4,7 @@
     "@ryoppippi/unplugin-typia": "^1.2.0",
     "@scalar/openapi-types": "^0.1.9",
     "@types/swagger-ui": "^3.52.4",
-    "better-auth": "^1.2.1",
+    "better-auth": "^1.2.2",
     "drizzle-orm": "^0.40.0",
     "hono": "^4.7.2",
     "iovalkey": "^0.3.1",
@@ -14,7 +14,7 @@
   "devDependencies": {
     "@configs/typescript": "workspace:*",
     "@hono/swagger-ui": "^0.5.1",
-    "@scalar/hono-api-reference": "^0.5.178",
+    "@scalar/hono-api-reference": "^0.5.179",
     "@types/bun": "^1.2.4",
     "drizzle-kit": "^0.30.5",
     "esbuild": "^0.25.0",
