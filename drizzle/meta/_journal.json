@@ -1,0 +1,13 @@
+{
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "breakpoints": true,
+      "idx": 0,
+      "tag": "0000_noisy_purifiers",
+      "version": "7",
+      "when": 1744708076747
+    }
+  ],
+  "version": "7"
+}

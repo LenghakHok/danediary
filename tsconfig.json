@@ -1,12 +1,35 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "composite": true,
-    "incremental": true,
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "module": "ES2022",
+    "moduleResolution": "bundler",
+    "noEmit": true,
     "paths": {
-      "@packages/*": ["./packages/*"],
-      "@utils": ["./utils/*"]
-    }
+      "@auth/*": ["./app/modules/auth/*"],
+
+      "~/*": ["./app/*"]
+    },
+    "plugins": [
+      {
+        "transform": "typia/lib/transform"
+      }
+    ],
+    "resolveJsonModule": true,
+    "rootDirs": [".", "./.react-router/types"],
+    "skipLibCheck": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "target": "ES2022",
+    "types": ["@react-router/node", "vite/client"],
+    "verbatimModuleSyntax": true
   },
-  "extends": "./configs/typescript/base.json"
+  "include": [
+    "**/*",
+    "**/.server/**/*",
+    "**/.client/**/*",
+    ".react-router/types/**/*"
+  ]
 }

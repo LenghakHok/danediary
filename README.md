@@ -1,66 +1,38 @@
-# Turborepo starter
+# Empty Encore TS Template
 
-This is an official starter Turborepo.
+## Developing locally
 
-## Using this example
+When you have [installed Encore](https://encore.dev/docs/ts/install), you can create a new Encore application and clone this example with this command.
 
-Run the following command:
-
-```sh
-npx create-turbo@latest
+```bash
+encore app create my-app-name --example=ts/empty
 ```
 
-## What's inside?
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
+## Running locally
+```bash
+encore run
 ```
 
-### Develop
+While `encore run` is running, open <http://localhost:9400/> to view Encore's [local developer dashboard](https://encore.dev/docs/ts/observability/dev-dash).
 
-To develop all apps and packages, run the following command:
+## Deployment
 
-```
-cd my-turborepo
-pnpm dev
-```
+Deploy your application to a staging environment in Encore's free development cloud:
 
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
+```bash
+git add -A .
+git commit -m 'Commit message'
+git push encore
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+Then head over to the [Cloud Dashboard](https://app.encore.dev) to monitor your deployment and find your production URL.
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+From there you can also connect your own AWS or GCP account to use for deployment.
 
+Now off you go into the clouds!
+
+## Testing
+
+```bash
+encore test
 ```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)

@@ -9,14 +9,12 @@
     },
     "enabled": true,
     "ignore": [
-      ".encore",
       ".idea",
       ".next",
       ".vercel",
       ".turbo",
       "build",
       "dist",
-      "encore.gen",
       "node_modules"
     ]
   },
@@ -34,14 +32,12 @@
     "enabled": true,
     "formatWithErrors": true,
     "ignore": [
-      ".encore",
       ".idea",
       ".next",
       ".vercel",
       ".turbo",
       "build",
       "dist",
-      "encore.gen",
       "node_modules"
     ],
     "indentStyle": "space",
@@ -63,14 +59,12 @@
   "linter": {
     "enabled": true,
     "ignore": [
-      ".encore",
       ".idea",
       ".next",
       ".vercel",
       ".turbo",
       "build",
       "dist",
-      "encore.gen",
       "node_modules"
     ],
     "rules": {
@@ -108,7 +102,8 @@
         }
       },
       "performance": {
-        "all": true
+        "all": true,
+        "noBarrelFile": "off"
       },
       "security": {
         "all": true
@@ -116,32 +111,36 @@
       "style": {
         "all": true,
         "noDefaultExport": "off",
+        "noNamespaceImport": "off",
+        "noParameterAssign": "warn",
+        "noParameterProperties": "off",
+        "useFilenamingConvention": "off",
         "useNamingConvention": "off"
       },
       "suspicious": {
         "all": true,
+        "noConsole": "off",
+        "noConsoleLog": "off",
+        "noExplicitAny": "off",
         "noReactSpecificProps": "off"
       }
     }
   },
   "organizeImports": {
-    "enabled": true,
+    "enabled": false,
     "ignore": [
-      ".encore",
       ".idea",
       ".next",
       ".vercel",
       ".turbo",
       "build",
       "dist",
-      "encore.gen",
       "node_modules"
     ]
   },
   "overrides": [
     {
       "ignore": [
-        ".encore",
         ".idea",
         ".next",
         ".million",
@@ -149,17 +148,8 @@
         ".turbo",
         "build",
         "dist",
-        "encore.gen",
         "node_modules"
       ]
-    },
-    {
-      "include": ["./backend/core/src/**/*.ts"],
-      "javascript": { "parser": { "unsafeParameterDecoratorsEnabled": true } },
-      "linter": {
-        "enabled": true,
-        "rules": { "style": { "noParameterProperties": "off" } }
-      }
     }
   ]
 }

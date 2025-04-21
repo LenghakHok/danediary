@@ -1,4 +1,0 @@
-preload = ["preload.config.ts", "env.config.ts"]
- 
-[test]
-preload = ["preload.config.ts", "env.config.ts"]
