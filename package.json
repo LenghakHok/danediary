@@ -72,6 +72,7 @@
     "@commitlint/format": "^19.8.0",
     "@react-router/dev": "^7.5.1",
     "@tailwindcss/vite": "^4.1.4",
+    "@types/bun": "^1.2.10",
     "@types/node": "^20.17.30",
     "@types/pg": "^8.11.13",
     "@types/react": "^19.1.2",

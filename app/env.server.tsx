@@ -1,8 +1,6 @@
 import { createAssert, type tags } from "typia";
 
 export type IEnv = {
-  NODE_ENV: string;
-
   VITE_PUBLIC_APP_NAME: string;
   VITE_PUBLIC_APP_URL: string & tags.Format<"uri">;
 
@@ -41,7 +39,5 @@ export const assertEnv = createAssert<IEnv>();
 
 export const env = assertEnv({
   ...process.env,
-
-  APP_PORT: Number.parseInt(process.env.APP_PORT ?? ""),
   CORS_ORIGIN_WHITELIST: process.env.CORS_ORIGIN_WHITELIST?.split(","),
 });

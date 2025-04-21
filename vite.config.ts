@@ -14,6 +14,8 @@ export default defineConfig({
       /* options */
       tsconfig: "tsconfig.json",
       typia: {
+        functional: true,
+        undefined: true,
         finite: true,
       },
     }),

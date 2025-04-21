@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from "~/components/ui/card";
 import { Muted } from "~/components/ui/typography";
-import { env } from "~/env";
+import { env } from "~/env.client";
 import { cn } from "~/lib/cn";
 import { AuthCard } from "~/modules/auth/components/auth-card";
 
