@@ -95,6 +95,7 @@
   "scripts": {
     "build": "react-router build",
     "dev": "react-router dev",
+    "lint": "biome check --fix --unsafe --no-errors-on-unmatched --staged ./app",
     "prepare": "ts-patch install",
     "start": "react-router-serve ./build/server/index.js",
     "typecheck": "react-router typegen && tsc --noEmit"
