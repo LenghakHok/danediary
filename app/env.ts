@@ -4,8 +4,6 @@ export type IEnv = {
   NODE_ENV: string;
 
   VITE_PUBLIC_APP_NAME: string;
-  VITE_PUBLIC_APP_PORT: string | (number & tags.Type<"int32">);
-  VITE_PUBLIC_APP_HOST: string;
   VITE_PUBLIC_APP_URL: string & tags.Format<"uri">;
 
   VITE_PUBLIC_POSTHOG_KEY: string;
