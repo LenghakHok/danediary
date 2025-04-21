@@ -1,11 +1,11 @@
 import { createValidate, type IValidation, type tags } from "typia";
 
-export type SignUpRequest = {
+export interface SignUpRequest {
   name: string & tags.MinLength<2> & tags.MaxLength<36>;
   email: string & tags.Format<"email">;
   password: string & tags.MinLength<8> & tags.MaxLength<32>;
   accept: true;
-};
+}
 
 export const signUpRequestErrors = {
   name: {

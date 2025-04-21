@@ -61,7 +61,7 @@ function hexToRgb(hex: string): number[] {
   return [red, green, blue];
 }
 
-type Circle = {
+interface Circle {
   x: number;
   y: number;
   translateX: number;
@@ -72,7 +72,7 @@ type Circle = {
   dx: number;
   dy: number;
   magnetism: number;
-};
+}
 
 export const Particles: React.FC<ParticlesProps> = React.memo(
   ({

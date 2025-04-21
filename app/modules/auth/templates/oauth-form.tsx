@@ -16,12 +16,12 @@ import { authClient } from "~/lib/auth.client";
 import { cn } from "~/lib/cn";
 import { typiaResolver } from "~/lib/typia.resolver";
 
-type Props = ComponentPropsWithRef<"form"> & {
+interface Props extends ComponentPropsWithRef<"form"> {
   callbackURL?: string;
   requestSignUp?: boolean;
   errorCallbackURL?: string;
   newUserCallbackURL?: string;
-};
+}
 
 const oauthProviders = [
   {

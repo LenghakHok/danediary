@@ -1,6 +1,6 @@
 import { createAssert, type tags } from "typia";
 
-export type IEnv = {
+export interface IEnv {
   VITE_PUBLIC_APP_NAME: string;
   VITE_PUBLIC_APP_URL: string & tags.Format<"uri">;
 
@@ -33,7 +33,7 @@ export type IEnv = {
 
   TWITTER_CLIENT_ID: string;
   TWITTER_CLIENT_SECRET: string;
-};
+}
 
 export const assertEnv = createAssert<IEnv>();
 
