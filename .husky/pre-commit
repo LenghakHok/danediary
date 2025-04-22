@@ -3,7 +3,7 @@ LIGHT_BLUE='\033[1;34m';
 NO_COLOR='\033[0m';
 
 tput setaf 1; echo -e "${LIGHT_BLUE}!${NO_COLOR} Formatter is Formatting Staged Files"; tput sgr0;
-bun lint
+bun typecheck && bun lint
 tput setaf 1; echo -e "${GREEN} Formatted${NO_COLOR}"; tput sgr0;
 
 tput setaf 1; echo -e "${LIGHT_BLUE}!${NO_COLOR} Checking for Circular Dependencies"; tput sgr0;

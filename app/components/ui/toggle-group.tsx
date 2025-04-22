@@ -53,12 +53,12 @@ function ToggleGroupItem({
       className={cn(
         toggleVariants({
           variant: context.variant || variant,
-          size: context.size > 0 || size,
+          size: context.size || size,
         }),
         "min-w-0 flex-1 shrink-0 rounded-none shadow-none first:rounded-l-md last:rounded-r-md focus:z-10 focus-visible:z-10 data-[variant=outline]:border-l-0 data-[variant=outline]:first:border-l",
         className,
       )}
-      data-size={context.size > 0 || size}
+      data-size={context.size || size}
       data-slot="toggle-group-item"
       data-variant={context.variant || variant}
       {...props}

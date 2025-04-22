@@ -3,7 +3,7 @@ import { startTransition, StrictMode, useEffect } from "react";
 import { hydrateRoot } from "react-dom/client";
 import { HydratedRouter } from "react-router/dom";
 
-import { env } from "./client.env";
+import { env } from "~/env.client_";
 
 function PosthogInit() {
   useEffect(() => {

@@ -114,6 +114,7 @@
         "noNamespaceImport": "off",
         "noParameterAssign": "warn",
         "noParameterProperties": "off",
+        "useExplicitLengthCheck": "off",
         "useFilenamingConvention": "off",
         "useNamingConvention": "off"
       },
