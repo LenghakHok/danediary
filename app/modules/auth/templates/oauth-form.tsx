@@ -87,7 +87,7 @@ export function OAuthForm({
       >
         {oauthProviders.map((provider) => (
           <Button
-            className="w-full transition-none"
+            className="w-full rounded-full transition-none"
             key={provider.name}
             onClick={() => form.setValue("provider", provider.name)}
             variant="outline"
@@ -99,7 +99,7 @@ export function OAuthForm({
           </Button>
         ))}
         <Button
-          className="w-full transition-none"
+          className="w-full rounded-full transition-none"
           type="button"
           variant="outline"
         >
