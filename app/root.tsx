@@ -30,6 +30,7 @@ export function links() {
     {
       rel: "icon",
       href: "/svg/logo.svg",
+      type: "image/svg+xml",
     },
   ];
 }

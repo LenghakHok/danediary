@@ -8,9 +8,8 @@
     "moduleResolution": "bundler",
     "noEmit": true,
     "paths": {
-      "@auth/*": ["./app/modules/auth/*"],
-
-      "~/*": ["./app/*"]
+      "~/*": ["./app/*"],
+      "~auth/*": ["./app/modules/auth/*"]
     },
     "plugins": [
       {

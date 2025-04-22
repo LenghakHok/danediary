@@ -1,7 +1,3 @@
-import {
-  validateOAuthRequest,
-  type OAuthRequest,
-} from "@auth/pipes/oauth.pipe";
 import { AtSignIcon } from "lucide-react";
 import { useCallback, type ComponentPropsWithRef } from "react";
 import { useForm } from "react-hook-form";
@@ -15,6 +11,10 @@ import { Form as FormProvider } from "~/components/ui/form";
 import { authClient } from "~/lib/auth.client";
 import { cn } from "~/lib/cn";
 import { typiaResolver } from "~/lib/typia.resolver";
+import {
+  validateOAuthRequest,
+  type OAuthRequest,
+} from "~auth/pipes/oauth.pipe";
 
 interface Props extends ComponentPropsWithRef<"form"> {
   callbackURL?: string;
@@ -87,7 +87,7 @@ export function OAuthForm({
       >
         {oauthProviders.map((provider) => (
           <Button
-            className="w-full"
+            className="w-full transition-none"
             key={provider.name}
             onClick={() => form.setValue("provider", provider.name)}
             variant="outline"
@@ -99,7 +99,7 @@ export function OAuthForm({
           </Button>
         ))}
         <Button
-          className="w-full"
+          className="w-full transition-none"
           type="button"
           variant="outline"
         >

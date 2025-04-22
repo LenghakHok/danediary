@@ -1,5 +1,6 @@
-import { SignUpForm } from "@auth/templates/sign-up-form";
 import { Link } from "react-router";
+
+import { env } from "~/client.env";
 import { buttonVariants } from "~/components/ui/button";
 import {
   CardContent,
@@ -8,17 +9,18 @@ import {
   CardTitle,
 } from "~/components/ui/card";
 import { Muted } from "~/components/ui/typography";
-import { env } from "~/env.client";
 import { cn } from "~/lib/cn";
-import { AuthCard } from "~/modules/auth/components/auth-card";
+
+import { AuthCard } from "~auth/components/auth-card";
+import { OAuthForm } from "~auth/templates/oauth-form";
 
 export default function SignUp() {
   return (
     <AuthCard
       content={
         <CardContent>
-          {/* <OAuthForm /> */}
-          <SignUpForm />
+          <OAuthForm />
+          {/* <SignUpForm /> */}
         </CardContent>
       }
       footer={

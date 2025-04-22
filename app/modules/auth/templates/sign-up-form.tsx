@@ -14,14 +14,14 @@ import {
 import { authClient } from "~/lib/auth.client";
 import { typiaResolver } from "~/lib/typia.resolver";
 
-import { IconInput } from "@auth/components/icon-input";
-import { PasswordInput } from "@auth/components/password-input";
+import { Checkbox } from "~/components/ui/checkbox";
+import { IconInput } from "~auth/components/icon-input";
+import { PasswordInput } from "~auth/components/password-input";
 import {
   signUpRequestErrors,
   validateSignUpRequest,
   type SignUpRequest,
-} from "@auth/pipes/sign-up.pipe";
-import { Checkbox } from "~/components/ui/checkbox";
+} from "~auth/pipes/sign-up.pipe";
 
 export function SignUpForm() {
   const form = useForm<SignUpRequest>({
