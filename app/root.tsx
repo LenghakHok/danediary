@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { memo, useMemo } from "react";
+import { useMemo } from "react";
 import {
   Links,
   Meta,
@@ -16,7 +16,7 @@ import {
   useTheme,
 } from "remix-themes";
 import "./app.css";
-import { env } from "./env.server_";
+import { env } from "./env";
 import { themeSessionResolver } from "./session.server";
 
 // Return the theme from the session storage using the loader
@@ -47,7 +47,7 @@ export const links: LinksFunction = () => {
   ];
 };
 
-export const App = memo(function App() {
+export const App = function App() {
   const data = useLoaderData<typeof loader>();
   const [theme] = useTheme();
 
@@ -74,7 +74,7 @@ export const App = memo(function App() {
       </body>
     </html>
   );
-});
+};
 
 export default function () {
   const data = useLoaderData<typeof loader>();

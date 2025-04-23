@@ -1,6 +1,14 @@
 import { createAssert, type tags } from "typia";
 
-export interface IEnv {
+export interface IEnvClient {
+  VITE_PUBLIC_APP_NAME: string;
+  VITE_PUBLIC_APP_URL: string & tags.Format<"uri">;
+
+  VITE_PUBLIC_POSTHOG_KEY: string;
+  VITE_PUBLIC_POSTHOG_HOST: string & tags.Format<"url">;
+}
+
+export interface IEnvSever {
   VITE_PUBLIC_APP_NAME: string;
   VITE_PUBLIC_APP_URL: string & tags.Format<"uri">;
 
@@ -35,9 +43,12 @@ export interface IEnv {
   TWITTER_CLIENT_SECRET: string;
 }
 
-export const assertEnv = createAssert<IEnv>();
+export const assertEnvClient = createAssert<IEnvClient>();
+export const assertEnvServer = createAssert<IEnvSever>();
 
-export const env = assertEnv({
-  ...process.env,
-  CORS_ORIGIN_WHITELIST: process.env.CORS_ORIGIN_WHITELIST?.split(","),
-});
+export const env = import.meta.env.SSR
+  ? assertEnvServer({
+      ...process.env,
+      CORS_ORIGIN_WHITELIST: process.env.CORS_ORIGIN_WHITELIST?.split(","),
+    })
+  : assertEnvClient(import.meta.env);

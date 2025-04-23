@@ -7,7 +7,7 @@ import { admin, multiSession, organization } from "better-auth/plugins";
 
 export const auth = betterAuth({
   advanced: { useSecureCookies: true },
-  appName: process.env.APP_NAME,
+  appName: process.env.VITE_PUBLIC_APP_NAME,
   database: drizzleAdapter(db, { provider: "pg", usePlural: true, schema }),
   emailAndPassword: {
     enabled: true,

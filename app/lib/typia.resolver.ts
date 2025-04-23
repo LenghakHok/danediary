@@ -11,6 +11,7 @@ import { createIs, type IValidation } from "typia";
 
 const isTypiaErrors = createIs<IValidation.IError[]>();
 
+const $inputRegExp = /^\$input\.?/g;
 const $arrayDotRegExp = /\.|(\[\d+\])/;
 const $arrayIndexRegExp = /\[(\d+)\]/;
 
@@ -34,18 +35,14 @@ function mapError<_TFieldValues extends FieldValues = FieldValues>(
   const errors: Record<string, FieldError> = {};
 
   for (let i = 0; i < parts.length; i++) {
-    const _part = parts[i];
+    const part = parts[i];
 
+    // Check if the field is a part of an array
     const _isArray = !Number.isNaN(Number(parts[i + 1]));
 
-    // if (!errors[part]) {
-    // errors[part] = isArray ? [] : { root: true, type: "validate", message };
-    // }
-    //   if (i === parts.length - 1) {
-    //     errors[part] = { ...errors[part], ...error };
-    //   } else {
-    //     errors = { ...errors[part] };
-    //   }
+    // If the field has not already set - set an error message
+    if (!errors[part]) {
+    }
   }
 
   return errors;
@@ -97,15 +94,19 @@ export function typiaResolver<
         errors: {},
       } satisfies ResolverSuccess<TTransformedValues>;
     } catch (e) {
+      console.error(e, isTypiaErrors(e));
       if (isTypiaErrors(e)) {
         let errors: Record<string, FieldError> = {};
 
-        // else structure the error messages
+        // else structure the error messages to { [fieldName] : FieldError }
         for (const error of e) {
-          const path = error.path.split(".")[1] || "_"; // Extract 'email' from '$input.email'
+          const path = error.path.replaceAll($inputRegExp, "") || "_"; // Extract 'email' from '$input.email'
+
           if (!path) {
             continue;
           }
+
+          console.log(path);
 
           // get the last constrain from "expected" error message
           const constraint = extractConstraint(error.expected);

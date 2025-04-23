@@ -1,6 +1,7 @@
 import { AtSignIcon } from "lucide-react";
 import { useCallback, type ComponentPropsWithRef } from "react";
 import { useForm } from "react-hook-form";
+
 import { DiscordIcon } from "~/components/icons/discord";
 import { FacebookIcon } from "~/components/icons/facebook";
 import { GithubIcon } from "~/components/icons/github";
@@ -11,6 +12,7 @@ import { Form as FormProvider } from "~/components/ui/form";
 import { authClient } from "~/lib/auth.client";
 import { cn } from "~/lib/cn";
 import { typiaResolver } from "~/lib/typia.resolver";
+
 import {
   validateOAuthRequest,
   type OAuthRequest,
@@ -98,6 +100,7 @@ export function OAuthForm({
             </span>
           </Button>
         ))}
+
         <Button
           className="w-full rounded-full transition-none"
           type="button"
