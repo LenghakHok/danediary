@@ -73,7 +73,7 @@ export function OAuthForm({
         newUserCallbackURL,
       });
     },
-    [callbackURL, requestSignUp, errorCallbackURL, newUserCallbackURL],
+    [callbackURL, requestSignUp, errorCallbackURL, newUserCallbackURL]
   );
 
   return (
@@ -82,7 +82,7 @@ export function OAuthForm({
         className={cn(
           "flex w-full flex-wrap gap-4",
           "[&_button_svg]:-translate-y-1/2 [&_button]:relative [&_button_svg]:absolute [&_button_svg]:top-1/2 [&_button_svg]:left-4",
-          className,
+          className
         )}
         onSubmit={form.handleSubmit(onSubmit)}
         {...props}
