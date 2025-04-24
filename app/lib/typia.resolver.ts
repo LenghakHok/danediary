@@ -7,42 +7,27 @@ import type {
   ResolverOptions,
   ResolverSuccess,
 } from "react-hook-form";
-import { createIs, type IValidation } from "typia";
-
-const isTypiaErrors = createIs<IValidation.IError[]>();
+import type { IValidation } from "typia";
 
 const $inputRegExp = /^\$input\.?/g;
-const $arrayDotRegExp = /\.|(\[\d+\])/;
-const $arrayIndexRegExp = /\[(\d+)\]/;
 
 /**
  * Converts a string path (e.g. users[0].name) into a nested error object from @hookform/resolvers.
  * Helps react-hook-form display errors correctly in nested field structures.
- * @param errors
- * @param path
- * @param error
+ * @param errors - The overall nested errors object for react-hook-form { [fieldName] : <FieldError> }
+ * @param path - The fieldName we need to append the FieldError object to
+ * @param error The FieldErrorObject we need to append to the [fieldName]
  */
 function mapError<_TFieldValues extends FieldValues = FieldValues>(
+  errors: Record<string, FieldError>,
   path: string,
-  _error: { type: string; message: string },
+  error: { type: string; message: string },
 ) {
-  const parts = path
-    // Splits the path into segments.
-    .split($arrayDotRegExp)
-    .filter(Boolean)
-    .map((part) => part.replace($arrayIndexRegExp, ".$1"));
-
-  const errors: Record<string, FieldError> = {};
-
-  for (let i = 0; i < parts.length; i++) {
-    const part = parts[i];
-
-    // Check if the field is a part of an array
-    const _isArray = !Number.isNaN(Number(parts[i + 1]));
-
-    // If the field has not already set - set an error message
-    if (!errors[part]) {
-    }
+  if (!errors[path]) {
+    errors[path] = {
+      type: error.type,
+      message: error.message,
+    };
   }
 
   return errors;
@@ -59,9 +44,9 @@ const extractConstraint = (expected: string): string => {
 
 /**
  *
- * @param assertion
- * @param messages
- * @returns
+ * @param validate - The validation function from Typia (Only Validation Function)
+ * @param messages - The custom messages mapped to the field name
+ * @returns Resolver<TFieldValues> - The resolver function for react-hook-form
  */
 export function typiaResolver<
   TFieldValues extends FieldValues = FieldValues,
@@ -77,53 +62,42 @@ export function typiaResolver<
     values: TFieldValues,
     _context: TContext | undefined,
     options: ResolverOptions<TFieldValues>,
-    // biome-ignore lint/complexity/noExcessiveCognitiveComplexity: <explanation>
   ) => {
-    try {
-      // validate the input
-      const result = validate(values);
+    // validate the input
+    const result = validate(values);
 
-      options.shouldUseNativeValidation && validateFieldsNatively({}, options);
-      // if success return the values
-      if (!result.success) {
-        throw result.errors;
+    options.shouldUseNativeValidation && validateFieldsNatively({}, options);
+
+    // if success return the values
+    if (!result.success) {
+      const errors: Record<string, FieldError> = {};
+
+      // else structure the error messages to { [fieldName] : FieldError }
+      for (const error of result.errors) {
+        const path = error.path.replaceAll($inputRegExp, "") || "_"; // Extract 'email' from '$input.email'
+
+        if (!path) {
+          continue;
+        }
+
+        // get the last constrain from "expected" error message
+        const constraint = extractConstraint(error.expected);
+
+        mapError(errors, path, {
+          type: error.path,
+          message: messages?.[path]?.[constraint] ?? error.expected,
+        });
       }
 
       return {
-        values: result.data,
-        errors: {},
-      } satisfies ResolverSuccess<TTransformedValues>;
-    } catch (e) {
-      console.error(e, isTypiaErrors(e));
-      if (isTypiaErrors(e)) {
-        let errors: Record<string, FieldError> = {};
-
-        // else structure the error messages to { [fieldName] : FieldError }
-        for (const error of e) {
-          const path = error.path.replaceAll($inputRegExp, "") || "_"; // Extract 'email' from '$input.email'
-
-          if (!path) {
-            continue;
-          }
-
-          console.log(path);
-
-          // get the last constrain from "expected" error message
-          const constraint = extractConstraint(error.expected);
-
-          errors = mapError(path, {
-            type: error.path,
-            message: messages?.[path]?.[constraint] ?? error.expected,
-          });
-        }
-
-        return {
-          values: {} as TFieldValues,
-          errors: toNestErrors(errors, options),
-        } satisfies ResolverError<TFieldValues>;
-      }
-
-      throw e;
+        values: {} as TFieldValues,
+        errors: toNestErrors(errors, options),
+      } satisfies ResolverError<TFieldValues>;
     }
+
+    return {
+      values: result.data,
+      errors: {},
+    } satisfies ResolverSuccess<TTransformedValues>;
   };
 }

@@ -16,6 +16,7 @@ import {
   useTheme,
 } from "remix-themes";
 import "./app.css";
+import { RootLayout } from "./components/layouts/root-layout";
 import { env } from "./env";
 import { themeSessionResolver } from "./session.server";
 
@@ -68,7 +69,9 @@ export const App = function App() {
         <Links />
       </head>
       <body>
-        <Outlet />
+        <RootLayout>
+          <Outlet />
+        </RootLayout>
         <ScrollRestoration />
         <Scripts />
       </body>

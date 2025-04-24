@@ -1,4 +1,4 @@
-import { EyeIcon, EyeOffIcon, KeyIcon } from "lucide-react";
+import { EyeClosedIcon, EyeIcon, KeyIcon } from "lucide-react";
 import {
   useCallback,
   useId,
@@ -45,12 +45,12 @@ export function PasswordInput({
         variant="ghost"
       >
         {isVisible ? (
-          <EyeOffIcon
+          <EyeIcon
             aria-hidden="true"
             className="size-4"
           />
         ) : (
-          <EyeIcon
+          <EyeClosedIcon
             aria-hidden="true"
             className="size-4"
           />

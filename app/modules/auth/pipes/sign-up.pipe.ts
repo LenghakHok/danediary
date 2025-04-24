@@ -1,19 +1,24 @@
 import { createValidate, type IValidation, type tags } from "typia";
 
 export interface SignUpRequest {
-  name: string & tags.MinLength<2> & tags.MaxLength<36>;
+  givenName: string & tags.MinLength<2> & tags.MaxLength<36>;
+  familyName: string & tags.MinLength<2> & tags.MaxLength<36>;
   email: string & tags.Format<"email">;
   password: string & tags.MinLength<8> & tags.MaxLength<32>;
   accept: true;
 }
 
 export const signUpRequestErrors = {
-  name: {
-    "MinLength<2>": "The name is too short (min 2 characters)",
+  givenName: {
+    "MinLength<2>": "Name is Required",
+    "MaxLength<36>": "The name is too long (max 36 characters)",
+  },
+  familyName: {
+    "MinLength<2>": "Name is Required",
     "MaxLength<36>": "The name is too long (max 36 characters)",
   },
   email: {
-    'Format<"email">': "The input email address is not valid",
+    'Format<"email">': "The email address is not valid",
   },
   password: {
     "MinLength<8>": "Password too short (min 8 characters)",

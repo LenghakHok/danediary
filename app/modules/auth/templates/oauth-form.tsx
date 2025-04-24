@@ -9,9 +9,11 @@ import { GoogleIcon } from "~/components/icons/google";
 import { XIcon } from "~/components/icons/x";
 import { Button } from "~/components/ui/button";
 import { Form as FormProvider } from "~/components/ui/form";
+
 import { authClient } from "~/lib/auth.client";
 import { cn } from "~/lib/cn";
 import { typiaResolver } from "~/lib/typia.resolver";
+import { For } from "~/utils/for";
 
 import {
   validateOAuthRequest,
@@ -73,7 +75,7 @@ export function OAuthForm({
         newUserCallbackURL,
       });
     },
-    [callbackURL, requestSignUp, errorCallbackURL, newUserCallbackURL]
+    [callbackURL, requestSignUp, errorCallbackURL, newUserCallbackURL],
   );
 
   return (
@@ -82,24 +84,28 @@ export function OAuthForm({
         className={cn(
           "flex w-full flex-wrap gap-4",
           "[&_button_svg]:-translate-y-1/2 [&_button]:relative [&_button_svg]:absolute [&_button_svg]:top-1/2 [&_button_svg]:left-4",
-          className
+          className,
         )}
         onSubmit={form.handleSubmit(onSubmit)}
         {...props}
       >
-        {oauthProviders.map((provider) => (
-          <Button
-            className="w-full rounded-full transition-none"
-            key={provider.name}
-            onClick={() => form.setValue("provider", provider.name)}
-            variant="outline"
-          >
-            <provider.icon />
-            <span>
-              Continue with <span className="capitalize">{provider.name}</span>
-            </span>
-          </Button>
-        ))}
+        <For
+          each={oauthProviders}
+          render={(provider) => (
+            <Button
+              className="w-full rounded-full transition-none"
+              key={provider.name}
+              onClick={() => form.setValue("provider", provider.name)}
+              variant="outline"
+            >
+              <provider.icon />
+              <span>
+                Continue with
+                <span className="capitalize"> {provider.name}</span>
+              </span>
+            </Button>
+          )}
+        />
 
         <Button
           className="w-full rounded-full transition-none"

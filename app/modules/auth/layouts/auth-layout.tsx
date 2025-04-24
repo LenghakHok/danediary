@@ -1,6 +1,4 @@
-import { memo, useEffect, useState, type ComponentPropsWithRef } from "react";
-import { useTheme } from "remix-themes";
-import { Particles } from "~/components/magic/particle";
+import { memo, type ComponentPropsWithRef } from "react";
 import { cn } from "~/lib/cn";
 
 type Props = ComponentPropsWithRef<"main">;
@@ -10,13 +8,6 @@ export const AuthLayout = memo(function AuthLayout({
   children,
   ...props
 }: Props) {
-  const [themes] = useTheme();
-  const [color, setColor] = useState("#ffffff");
-
-  useEffect(() => {
-    setColor(themes === "dark" ? "#ffffff" : "#000000");
-  }, [themes]);
-
   return (
     <main
       className={cn(
@@ -26,13 +17,6 @@ export const AuthLayout = memo(function AuthLayout({
       {...props}
     >
       {children}
-      <Particles
-        className="absolute inset-0 z-0"
-        color={color}
-        ease={80}
-        quantity={100}
-        refresh={true}
-      />
     </main>
   );
 });

@@ -3,6 +3,7 @@ import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 
 import { Button } from "~/components/ui/button";
+import { Checkbox } from "~/components/ui/checkbox";
 import {
   Form,
   FormControl,
@@ -11,10 +12,10 @@ import {
   FormLabel,
   FormMessage,
 } from "~/components/ui/form";
+
 import { authClient } from "~/lib/auth.client";
 import { typiaResolver } from "~/lib/typia.resolver";
 
-import { Checkbox } from "~/components/ui/checkbox";
 import { IconInput } from "~auth/components/icon-input";
 import { PasswordInput } from "~auth/components/password-input";
 import {
@@ -27,7 +28,8 @@ export function SignUpForm() {
   const form = useForm<SignUpRequest>({
     resolver: typiaResolver(validateSignUpRequest, signUpRequestErrors),
     defaultValues: {
-      name: "",
+      givenName: "",
+      familyName: "",
       email: "",
       password: "",
     },
@@ -37,7 +39,7 @@ export function SignUpForm() {
     (v: SignUpRequest) =>
       authClient.signUp.email({
         email: v.email,
-        name: v.name,
+        name: `${v.givenName} ${v.familyName}`,
         password: v.password,
         callbackURL: "/auth/sign-up",
       }),
@@ -50,35 +52,56 @@ export function SignUpForm() {
         className="space-y-4"
         onSubmit={form.handleSubmit(onSubmit)}
       >
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="sr-only font-semibold">Full Name</FormLabel>
-              <FormControl>
-                <IconInput
-                  icon={UserIcon}
-                  placeholder="Name"
-                  type="text"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <div className="grid w-full grid-cols-2 grid-rows-1 items-start justify-between gap-4">
+          <FormField
+            control={form.control}
+            name="givenName"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="font-semibold">Given Name</FormLabel>
+                <FormControl>
+                  <IconInput
+                    icon={UserIcon}
+                    placeholder="John"
+                    type="text"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="familyName"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="font-semibold">Family Name</FormLabel>
+                <FormControl>
+                  <IconInput
+                    icon={UserIcon}
+                    placeholder="Doe"
+                    type="text"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
 
         <FormField
           control={form.control}
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="sr-only font-semibold">Email</FormLabel>
+              <FormLabel className="font-semibold">Email</FormLabel>
               <FormControl>
                 <IconInput
                   icon={AtSignIcon}
-                  placeholder="Email"
+                  placeholder="someone@example.com"
                   type="email"
                   {...field}
                 />
@@ -93,7 +116,7 @@ export function SignUpForm() {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="sr-only font-semibold">Password</FormLabel>
+              <FormLabel className="font-semibold">Password</FormLabel>
               <FormControl>
                 <PasswordInput
                   className="placeholder:text-sm"

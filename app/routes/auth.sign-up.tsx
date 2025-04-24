@@ -12,15 +12,15 @@ import { env } from "~/env";
 import { cn } from "~/lib/cn";
 
 import { AuthCard } from "~auth/components/auth-card";
-import { OAuthForm } from "~auth/templates/oauth-form";
+import { SignUpForm } from "~auth/templates/sign-up-form";
 
 export default function SignUp() {
   return (
     <AuthCard
       content={
         <CardContent>
-          <OAuthForm />
-          {/* <SignUpForm /> */}
+          {/* <OAuthForm /> */}
+          <SignUpForm />
         </CardContent>
       }
       footer={
